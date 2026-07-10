@@ -31,7 +31,9 @@
                 class="bg-gray-500 rounded px-4 py-3 w-32 ml-2 hover:bg-gray-600 transition-colors">Buscar</button>
         </form>
 
+        <form th:action="@{/candidate/jobs/apply}" method="post">
         <div th:each="job : ${jobs}" class="text-white bg-gray-800 rounded-lg p-4 mb-4 shadow-md text-justify">
+            <input type="hidden" name="jobId" th:value="${job.id}">
             <h3 th:text="${job.description}" class="font-bold"></h3>
             <span th:text="${job.level}" class="block"></span>
             <span class="mt-4 block font-bold">Benefícios</span>
@@ -39,6 +41,7 @@
             <button
                 class="bg-gray-500 rounded px-4 py-3 w-32 ml-2 hover:bg-gray-400 transition-colors mt-4">Aplicar</button>
         </div>
+        </form>
 
 
     </div>

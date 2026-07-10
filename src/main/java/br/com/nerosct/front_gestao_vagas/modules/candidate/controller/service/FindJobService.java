@@ -1,6 +1,5 @@
 package br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Map;
 

@@ -1,5 +1,7 @@
 package br.com.nerosct.front_gestao_vagas.modules.candidate.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,9 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.ApplyJobService;
 import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.CandidateService;
 import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.FindJobService;
 import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.ProfileCandidateService;
@@ -32,6 +36,9 @@ public class CandidateController {
 
     @Autowired
     private FindJobService findJobService;
+
+    @Autowired
+    private ApplyJobService applyJobService;
 
     @GetMapping("/login")
     public String login() {
@@ -85,6 +92,18 @@ public class CandidateController {
             return "redirect:/candidate/login";
         }
         return "candidate/jobs";
+    }
+
+    @PostMapping("/jobs/apply")
+    @PreAuthorize("hasRole('CANDIDATE')")
+    public String applyJob(@RequestParam("jobId") UUID jobId, Model model) {
+        try {
+            this.applyJobService.execute(getToken(), jobId);
+            System.out.println("JOB ID: " + jobId);
+            return "redirect:/candidate/jobs";
+        } catch (HttpClientErrorException e) {
+            return "redirect:/candidate/login";
+        }
     }
 
     private String getToken() {
