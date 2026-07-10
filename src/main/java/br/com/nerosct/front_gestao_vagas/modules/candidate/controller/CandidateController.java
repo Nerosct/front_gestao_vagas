@@ -106,6 +106,13 @@ public class CandidateController {
         }
     }
 
+
+    @GetMapping("/create")
+    public String create(){
+        return "candidate/create";
+    }
+
+
     private String getToken() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getDetails().toString();

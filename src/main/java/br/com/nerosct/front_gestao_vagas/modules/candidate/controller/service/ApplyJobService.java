@@ -1,7 +1,5 @@
 package br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.http.HttpEntity;
