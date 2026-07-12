@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class CreateCompanyDTO {
     private String username;
-    private String name;
     private String email;
-    private String password;
     private String website;
     private String description;
+    private String name;
+    private String password;
 }

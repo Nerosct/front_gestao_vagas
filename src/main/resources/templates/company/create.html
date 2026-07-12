@@ -9,21 +9,32 @@
 </head>
 
 <body class="bg-gray-900 h-screen items-center flex justify-center">
-    <!-- <form id="submitForm" class="flex gap-24" th:action="@{/company/create}" method="post" th:object="${company}">
+    <form id="submitForm" class="flex gap-24" th:action="@{/company/create}" method="post" th:object="${company}">
+
 
         <div class="space-y-8 bg-zinc-950 rounded-md p-10">
+
             <p class="text-white font-bold text-center text-4xl mb-3">Crie seu Cadastro</p>
-            <input type="text" name="name" th:field="*{name}"
+
+            <input type="text" name="username" id="username" th:field="*{username}"
                 class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
-                placeholder="Digite o seu Nome">
+                placeholder="Digite o seu Usuário">
 
             <input type="email" name="email" th:field="*{email}"
                 class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
                 placeholder="Digite o seu E-mail">
 
-            <input type="text" name="username" id="username" th:field="*{username}"
+            <input type="text" name="website" th:field="*{website}"
                 class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
-                placeholder="Digite o seu Usuário">
+                placeholder="Digite o seu website">
+
+            <textarea name="description" th:field="*{description}"
+                class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
+                placeholder="Digite uma breve descrição sobre a sua Empresa"></textarea>
+
+            <input type="text" name="name" th:field="*{name}"
+                class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
+                placeholder="Digite o nome da sua Empresa">
 
             <input type="password" name="password" id="password" th:field="*{password}"
                 class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
@@ -32,10 +43,6 @@
             <input type="password" name="confirmPassword" id="passwordConfirmation"
                 class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
                 placeholder="Confirme a sua Senha">
-
-            <textarea name="description" th:field="*{description}"
-                class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
-                placeholder="Digite uma breve Descrição sobre você"></textarea>
 
             <p class="text-red-400 hidden" id="messagePasswordMismatch"> As senhas não conferem!</p>
             <p class="text-red-400" th:if="${error_message}" th:text="${error_message}"></p>
@@ -50,7 +57,7 @@
         <div class="text-white max-width text-6xl flex items-center">
             Gestao de vagas
         </div>
-    </form> -->
+    </form>
 
     <script>
         document.getElementById('submitForm').addEventListener('submit', function (event) {
