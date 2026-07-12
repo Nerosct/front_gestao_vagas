@@ -1,0 +1,12 @@
+package br.com.nerosct.front_gestao_vagas.modules.candidate.controller.dto;
+
+import lombok.Data;
+
+@Data
+public class CreateCandidateDTO {
+    private String username;
+    private String password;
+    private String name;
+    private String email;
+    private String description;
+}

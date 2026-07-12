@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.dto.CreateCandidateDTO;
 import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.ApplyJobService;
 import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.CandidateService;
+import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.CreateCandidateService;
 import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.FindJobService;
 import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.ProfileCandidateService;
 import jakarta.servlet.http.HttpSession;
@@ -39,6 +41,9 @@ public class CandidateController {
 
     @Autowired
     private ApplyJobService applyJobService;
+
+    @Autowired
+    private CreateCandidateService createCandidateService;
 
     @GetMapping("/login")
     public String login() {
@@ -106,16 +111,25 @@ public class CandidateController {
         }
     }
 
-
-    @GetMapping("/create")
-    public String create(){
-        return "candidate/create";
-    }
-
-
     private String getToken() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getDetails().toString();
     }
 
+    @GetMapping("/create")
+    public String create(Model model) {
+        model.addAttribute("candidate", new CreateCandidateDTO());
+        return "/candidate/create";
+    }
+
+    @PostMapping("/create")
+    public String saveCandidate(CreateCandidateDTO candidate, Model model) {
+        try {
+            this.createCandidateService.execute(candidate);
+            return "redirect:/candidate/login";
+        } catch (HttpClientErrorException e) {
+            model.addAttribute("error_message", e.getMessage());
+            return "/candidate/create";
+        }
+    }
 }
