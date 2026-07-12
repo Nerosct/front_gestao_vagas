@@ -1,4 +1,4 @@
-package br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service;
+package br.com.nerosct.front_gestao_vagas.modules.candidate.service;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +13,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.dto.JobDTO;
+import br.com.nerosct.front_gestao_vagas.modules.candidate.dto.JobDTO;
 
 import org.springframework.http.HttpStatus;
 

@@ -1,4 +1,4 @@
-package br.com.nerosct.front_gestao_vagas.modules.candidate.controller.dto;
+package br.com.nerosct.front_gestao_vagas.modules.candidate.dto;
 
 import lombok.Data;
 

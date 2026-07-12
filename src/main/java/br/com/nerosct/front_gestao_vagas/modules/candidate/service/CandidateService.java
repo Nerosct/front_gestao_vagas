@@ -1,4 +1,4 @@
-package br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service;
+package br.com.nerosct.front_gestao_vagas.modules.candidate.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.dto.Token;
+import br.com.nerosct.front_gestao_vagas.modules.candidate.dto.Token;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

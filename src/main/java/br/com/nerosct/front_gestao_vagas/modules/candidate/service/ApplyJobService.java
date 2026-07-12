@@ -1,4 +1,4 @@
-package br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service;
+package br.com.nerosct.front_gestao_vagas.modules.candidate.service;
 
 import java.util.UUID;
 

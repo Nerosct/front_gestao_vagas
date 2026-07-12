@@ -38,6 +38,7 @@
                 placeholder="Digite uma breve Descrição sobre você"></textarea>
 
             <p class="text-red-400 hidden" id="messagePasswordMismatch"> As senhas não conferem!</p>
+            <p class="text-red-400" th:if="${error_message}" th:text="${error_message}"></p>
 
             <button type="submit"
                 class="bg-green-900 w-96 p-4 text-white text-md font-bold cursor-pointer rounded hover:bg-green-700">Cadastre-se</button>

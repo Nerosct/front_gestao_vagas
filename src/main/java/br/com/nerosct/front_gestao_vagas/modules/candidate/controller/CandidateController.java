@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.dto.CreateCandidateDTO;
-import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.ApplyJobService;
-import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.CandidateService;
-import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.CreateCandidateService;
-import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.FindJobService;
-import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service.ProfileCandidateService;
+import br.com.nerosct.front_gestao_vagas.modules.candidate.dto.CreateCandidateDTO;
+import br.com.nerosct.front_gestao_vagas.modules.candidate.service.ApplyJobService;
+import br.com.nerosct.front_gestao_vagas.modules.candidate.service.CandidateService;
+import br.com.nerosct.front_gestao_vagas.modules.candidate.service.CreateCandidateService;
+import br.com.nerosct.front_gestao_vagas.modules.candidate.service.FindJobService;
+import br.com.nerosct.front_gestao_vagas.modules.candidate.service.ProfileCandidateService;
+import br.com.nerosct.front_gestao_vagas.utils.FormatErrorMessage;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 
@@ -129,7 +130,9 @@ public class CandidateController {
             return "redirect:/candidate/login";
         } catch (HttpClientErrorException e) {
             model.addAttribute("error_message", e.getMessage());
-            return "/candidate/create";
+            model.addAttribute("error_message", FormatErrorMessage.formatErrorMessage(e.getResponseBodyAsString()));
+            model.addAttribute("candidate", candidate);
+            return "candidate/create";
         }
     }
 }

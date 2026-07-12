@@ -1,4 +1,4 @@
-package br.com.nerosct.front_gestao_vagas.modules.candidate.controller.service;
+package br.com.nerosct.front_gestao_vagas.modules.candidate.service;
 
 import java.util.Map;
 import org.springframework.http.HttpEntity;
@@ -10,7 +10,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpClientErrorException.Unauthorized;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.nerosct.front_gestao_vagas.modules.candidate.controller.dto.ProfileUserDTO;
+import br.com.nerosct.front_gestao_vagas.modules.candidate.dto.ProfileUserDTO;
 
 @Service
 public class ProfileCandidateService {
