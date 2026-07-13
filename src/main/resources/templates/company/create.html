@@ -16,43 +16,51 @@
 
             <p class="text-white font-bold text-center text-4xl mb-3">Crie seu Cadastro</p>
 
-            <input type="text" name="username" id="username" th:field="*{username}"
-                class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
-                placeholder="Digite o seu Usuário">
+            <div class="flex flex-row gap-3">
+                <input type="text" name="username" id="username" th:field="*{username}"
+                    class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
+                    placeholder="Digite o seu Usuário">
 
-            <input type="email" name="email" th:field="*{email}"
-                class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
-                placeholder="Digite o seu E-mail">
+                <input type="email" name="email" th:field="*{email}"
+                    class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
+                    placeholder="Digite o seu E-mail">
+            </div>
 
-            <input type="text" name="website" th:field="*{website}"
-                class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
-                placeholder="Digite o seu website">
+            <div class="flex flex-row gap-3">
+                <input type="text" name="website" th:field="*{website}"
+                    class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
+                    placeholder="Digite o seu website">
+                <input type="text" name="name" th:field="*{name}"
+                    class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
+                    placeholder="Digite o nome da sua Empresa">
+            </div>
 
-            <textarea name="description" th:field="*{description}"
-                class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
-                placeholder="Digite uma breve descrição sobre a sua Empresa"></textarea>
+            <div class="flex flex-row gap-3">
+                <input type="password" name="password" id="password" th:field="*{password}"
+                    class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
+                    placeholder="Digite a sua Senha">
 
-            <input type="text" name="name" th:field="*{name}"
-                class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
-                placeholder="Digite o nome da sua Empresa">
+                <input type="password" name="confirmPassword" id="passwordConfirmation"
+                    class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
+                    placeholder="Confirme a sua Senha">
+            </div>
 
-            <input type="password" name="password" id="password" th:field="*{password}"
-                class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
-                placeholder="Digite a sua Senha">
-
-            <input type="password" name="confirmPassword" id="passwordConfirmation"
-                class="bg-gray-50 text-gray-900 text-xd rounded w-96 block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
-                placeholder="Confirme a sua Senha">
+            <div class="w-full">
+                <textarea name="description" th:field="*{description}"
+                    class="bg-gray-50 text-gray-900 text-xd rounded w-full block p-3 focus:ring-green-600 focus:outline-none focus:ring-2 focus:outline-none"
+                    placeholder="Digite uma breve descrição sobre a sua Empresa"></textarea>
+            </div>
 
             <p class="text-red-400 hidden" id="messagePasswordMismatch"> As senhas não conferem!</p>
             <p class="text-red-400" th:if="${error_message}" th:text="${error_message}"></p>
 
             <button type="submit"
-                class="bg-green-900 w-96 p-4 text-white text-md font-bold cursor-pointer rounded hover:bg-green-700">Cadastre-se</button>
-            <a href="/company/login"
-                class="text-white text-md font-bold block text-center rounded hover:text-green-600 underline underline-offset-2">
-                Login
-            </a>
+                class="bg-green-900 w-full p-4 text-white text-md font-bold cursor-pointer rounded hover:bg-green-700 ">Cadastre-se</button>
+            <p class="text-white mt-4">Já tem uma conta? <a href="/company/login"
+                    class="text-center text-green-700 hover:text-green-600">
+                    Faça Login
+                </a></p>
+
         </div>
         <div class="text-white max-width text-6xl flex items-center">
             Gestao de vagas
