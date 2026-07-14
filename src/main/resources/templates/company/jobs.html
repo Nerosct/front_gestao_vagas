@@ -12,31 +12,46 @@
 
     <nav class="bg-zinc-900 p-4 flex justify-between items-center">
         <div>
-            <a href="" class="text-white text-lg font-size-semibold ">Vagas</a>
+            <a href="/company/jobs" class="text-white text-lg font-size-semibold ">Cadastro</a>
         </div>
         <div>
-            <a href="" class="text-white text-lg font-size-semibold ">Logout</a>
+            <a href="/company/jobs/list" class="text-white text-lg font-size-semibold ">Listar Vagas</a>
+        </div>
+        <div>
+            <a href="/company/logout" class="text-white text-lg font-size-semibold ">Logout</a>
         </div>
     </nav>
 
     <div class="flex-grow flex items-center justify-center">
         <div class="bg-gray-200 rounded-lg p-8 w-3/4 max-w-xl shadow-lg">
             <h1 class="text-center text-gray-800 text-3xl mb-6 font-bold">Cadastro de Vagas</h1>
-            <form action="" class="space-y-4">
-                <label for="title">Descrição da vaga</label>
-                <input type="text"
-                    class="w-full bg-gray-100 text-gray-800 text-lg rounded p-2 focus:outline-green-600 focus:ring-2 focus:outline-none"
-                    placeholder="Ex: Desenvolvedor Fullstack">
+            <form action="" th:action="@{/company/jobs}" th:object="${jobs}" method="post" class="space-y-4">
+                <div>
+                    <label for="title">Descrição da vaga</label>
+                    <input type="text" th:field="*{description}" name="description"
+                        class="w-full bg-gray-100 text-gray-800 text-lg rounded p-2 focus:outline-green-600 focus:ring-2 focus:outline-none"
+                        placeholder="Ex: Desenvolvedor Fullstack">
+                </div>
 
-                <label for="level">Nível da vaga</label>
-                <input type="text"
-                    class="w-full bg-gray-100 text-gray-800 text-lg rounded p-2 focus:outline-green-600 focus:ring-2 focus:outline-none"
-                    placeholder="Ex: Pleno">
-                    
-                <label for="Benefits"> Benefícios</label>
-                <input type="text"
-                    class="w-full bg-gray-100 text-gray-800 text-lg rounded p-2 focus:outline-green-600 focus:ring-2 focus:outline-none"
-                    placeholder="Ex: Gym-Pass">
+                <div>
+                    <label for="level">Nível da vaga</label>
+                    <input type="text" th:field="*{level}" name="level"
+                        class="w-full bg-gray-100 text-gray-800 text-lg rounded p-2 focus:outline-green-600 focus:ring-2 focus:outline-none"
+                        placeholder="Ex: Pleno">
+                </div>
+
+                <div>
+                    <label for="Benefits"> Benefícios</label>
+                    <input type="text" th:field="*{benefits}" name="benefits"
+                        class="w-full bg-gray-100 text-gray-800 text-lg rounded p-2 focus:outline-green-600 focus:ring-2 focus:outline-none"
+                        placeholder="Ex: Gym-Pass">
+                </div>
+
+                <div class="pt-4">
+                    <button class="bg-green-900 w-full py-3 rounded text-white cursor-pointer hover:bg-green-700">
+                        Cadastrar Vaga
+                    </button>
+                </div>
 
             </form>
         </div>

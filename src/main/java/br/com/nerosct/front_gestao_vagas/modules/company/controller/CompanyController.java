@@ -16,8 +16,11 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.nerosct.front_gestao_vagas.modules.company.dto.CreateCompanyDTO;
+import br.com.nerosct.front_gestao_vagas.modules.company.dto.CreateJobsDTO;
 import br.com.nerosct.front_gestao_vagas.modules.company.service.CreateCompanyService;
+import br.com.nerosct.front_gestao_vagas.modules.company.service.CreateJobService;
 import br.com.nerosct.front_gestao_vagas.modules.company.service.LoginCompanyService;
+import br.com.nerosct.front_gestao_vagas.modules.company.service.ListAllJobsCompanyService;
 import br.com.nerosct.front_gestao_vagas.utils.FormatErrorMessage;
 import jakarta.servlet.http.HttpSession;
 
@@ -30,6 +33,12 @@ public class CompanyController {
 
     @Autowired
     private LoginCompanyService loginCompanyService;
+
+    @Autowired
+    private CreateJobService createJobService;
+
+    @Autowired
+    private ListAllJobsCompanyService listAllJobsCompanyService;
 
     @GetMapping("/create")
     public String create(Model model) {
@@ -78,15 +87,46 @@ public class CompanyController {
 
     @GetMapping("/jobs")
     @PreAuthorize("hasRole('COMPANY')")
-    public String jobs() {
+    public String jobs(Model model) {
+        model.addAttribute("jobs", new CreateJobsDTO());
         return "company/jobs";
     }
 
+    @PostMapping("/jobs")
+    @PreAuthorize("hasRole('COMPANY')")
+    public String createJobs(CreateJobsDTO createJobDTO, Model model) {
+        try {
+            var result = this.createJobService.execute(createJobDTO, getToken());
+            System.out.println(result);
+            return "redirect:/company/jobs/list";
+        } catch (HttpClientErrorException e) {
+            model.addAttribute("error_message", FormatErrorMessage.formatErrorMessage(e.getResponseBodyAsString()));
+            model.addAttribute("jobs", createJobDTO);
+        }
+        return "company/jobs";
+    }
+
+
+    @GetMapping("/jobs/list")
+    @PreAuthorize("hasRole('COMPANY')")
+    public String list(Model model){
+        var jobs = this.listAllJobsCompanyService.execute(getToken());
+        model.addAttribute("jobs", jobs);
+        return "company/list";
+    }
     
+
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        return "redirect:/company/login";
+    }
+
     private String getToken() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getDetails().toString();
     }
 
+    
 
 }
