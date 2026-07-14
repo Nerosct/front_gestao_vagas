@@ -2,6 +2,7 @@ package br.com.nerosct.front_gestao_vagas.modules.company.service;
 
 
 import org.springframework.http.MediaType;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,10 @@ import br.com.nerosct.front_gestao_vagas.modules.company.dto.CreateCompanyDTO;
 @Service
 public class CreateCompanyService {
 
+
+    @Value("${host.api.gestao.vagas}")  
+    private String hostApiGestaoVagas;
+
     public void execute(CreateCompanyDTO createCompanyDTO) {
         try {
             RestTemplate rt = new RestTemplate();
@@ -23,7 +28,9 @@ public class CreateCompanyService {
 
             HttpEntity<CreateCompanyDTO> request = new HttpEntity<>(createCompanyDTO, headers);
 
-            var result = rt.exchange("http://localhost:8080/company/", HttpMethod.POST, request, String.class);
+            String url = this.hostApiGestaoVagas.concat("/company/");
+
+            var result = rt.exchange(url, HttpMethod.POST, request, String.class);
             System.out.println(result);
         } catch (HttpClientErrorException e) {
             System.out.println(e.getResponseBodyAsString());

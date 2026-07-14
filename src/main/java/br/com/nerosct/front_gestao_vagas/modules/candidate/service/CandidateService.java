@@ -8,12 +8,16 @@ import org.springframework.web.client.RestTemplate;
 
 import br.com.nerosct.front_gestao_vagas.modules.candidate.dto.Token;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
 @Service
 public class CandidateService {
+
+    @Value("${host.api.gestao.vagas}")  
+    private String hostApiGestaoVagas;
 
     public Token loginCandidate(String username, String password) {
         RestTemplate rt = new RestTemplate();
@@ -27,7 +31,9 @@ public class CandidateService {
 
         HttpEntity<Map<String, String>> request = new HttpEntity<>(data, headers);
 
-        var result = rt.postForObject("http://localhost:8080/candidate/auth", request, Token.class);
+        String url = this.hostApiGestaoVagas.concat("/candidate/auth");
+
+        var result = rt.postForObject(url, request, Token.class);
 
         return result;
     }
